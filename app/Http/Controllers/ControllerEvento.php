@@ -13,7 +13,7 @@ class ControllerEvento extends Controller
      */
     public function index()
     {
-        //
+        return view('Evento.main');
     }
 
     /**
