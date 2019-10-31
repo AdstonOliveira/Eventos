@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Participante;
+use DB;
 
 class ParticipanteController extends Controller
 {
@@ -13,7 +15,13 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        return 'oi eu sou a index';
+      
+        $data = [
+           'participantesAtivos' => Participante::all()
+           
+        ];
+        
+        return view('participante.index', compact('data'));
     }
 
     /**
@@ -56,7 +64,16 @@ class ParticipanteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $participante = Participante::findOrFail($id);
+
+        $data = [
+            'participante' => $participante,
+            'url'     => 'participante/'.$id,
+            'method'  => 'PUT'
+        ];
+
+        return view('participante.form', compact('data'));
+       
     }
 
     /**
