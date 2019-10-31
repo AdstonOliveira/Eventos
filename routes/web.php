@@ -15,5 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//participante
+Route::resource('/participante', 'ParticipanteController');
+
 Route::get('/evento/index','ControllerEvento@index');
 Route::get('/evento/create', 'ControllerEvento@create');
+Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
+Route::post('/evento/novo', 'ControllerEvento@create');
