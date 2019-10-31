@@ -13,7 +13,7 @@ class Participantes extends Migration
      */
     public function up()
     {
-
+        if(!Schema::hasTable('participantes')){
         Schema::create('participantes', function (Blueprint $table)
 	 {
            		$table->increments('id');
@@ -25,7 +25,9 @@ class Participantes extends Migration
                 $table->date('data_nascimento', 80);
                 $table->string('organizacao', 80);
                 $table->timestamps();
-        	});        
+                $table->softdeletes();
+            });   
+        }     
     }
 
     /**

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Evento;
+use DB;
 
 class ControllerEvento extends Controller
 {
-    /**
+    /**protected $fillable = ['data', 'hora', 'nome', 'descricao', 'local'];
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -21,8 +23,10 @@ class ControllerEvento extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
+        
         //
     }
 
@@ -32,9 +36,22 @@ class ControllerEvento extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $evento = $request->all();
+        DB::beginTransaction();
+        try{
+            $evento->create();
+            DB::commit();
+            
+        }catch(\Exception $e){
+            DB::rollback();
+            return back()->with('error', 'Erro no servidor!');
+        }
+
+        
+
     }
 
     /**
@@ -45,7 +62,8 @@ class ControllerEvento extends Controller
      */
     public function show($id)
     {
-        //
+       
+
     }
 
     /**
