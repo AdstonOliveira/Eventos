@@ -34,6 +34,19 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request)
     {
+        $dados = new Participante;
+        
+        $dados->name = $request->name;
+        $dados->rg = $request->rg;
+        $dados->cpf = $request->cpf ;
+        $dados->email = $request->email;
+        $dados->telefone = $request->telefone;
+        $dados->data_nascimento = $request->data_nascimento;
+        $dados->organizacao = $request->organizacao;
+
+        //$dados->save();
+        return $dados;
+
         
     }
 

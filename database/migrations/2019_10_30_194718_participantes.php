@@ -39,3 +39,5 @@ class Participantes extends Migration
         Schema::drop('participantes');
     }
 }
+
+

@@ -20,3 +20,5 @@ Route::resource('/participante', 'ParticipanteController');
 
 Route::get('/evento/index','ControllerEvento@index');
 
+Route::get('/participante', 'ParticipanteController');
+
