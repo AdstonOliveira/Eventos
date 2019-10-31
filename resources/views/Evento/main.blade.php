@@ -9,6 +9,11 @@
 <body>
 <h1> Index </h1>
 
+{{
+    @forelse($evento as $e)
+        <p> $e->data </p>
+}}
+
     
 </body>
 </html>
