@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//participante
+Route::resource('/participante', 'ParticipanteController');
+
 Route::get('/evento/index','ControllerEvento@index');
+
