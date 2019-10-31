@@ -19,9 +19,5 @@ Route::get('/', function () {
 Route::resource('/participante', 'ParticipanteController');
 
 Route::get('/evento/index','ControllerEvento@index');
-<<<<<<< HEAD
 Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
 Route::post('/evento/novo', 'ControllerEvento@create');
-=======
-
->>>>>>> c795c8608a1822ea307cae7a231e2ce32eae5c08

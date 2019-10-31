@@ -25,14 +25,9 @@ class Participantes extends Migration
                 $table->date('data_nascimento');
                 $table->string('organizacao', 80);
                 $table->timestamps();
-<<<<<<< HEAD
                 $table->softdeletes();
             });   
         }     
-=======
-                $table->softDeletes();
-        	});        
->>>>>>> c795c8608a1822ea307cae7a231e2ce32eae5c08
     }
 
     /**
