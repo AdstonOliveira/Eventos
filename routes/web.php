@@ -22,6 +22,8 @@ Route::resource('/participante', 'ParticipanteController');
 
 //Evento
 Route::get('/evento/index','ControllerEvento@index');
+Route::get('/evento/create', 'ControllerEvento@create');
+Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
 Route::post('/evento/novo', 'ControllerEvento@create');
 Route::get('/evento/{id}', 'ControllerEvento@show');
 Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
