@@ -16,18 +16,23 @@ class Participantes extends Migration
         if(!Schema::hasTable('participantes')){
         Schema::create('participantes', function (Blueprint $table)
 	 {
-           		$table->increments('id');
-                $table->string('nome', 100);
-                $table->string('rg', );
+           		$table->integer('id', true);
+                $table->string('nome');
+                $table->string('rg');
                 $table->string('cpf', 11);
-                $table->string('email', 80);
-                $table->string('telefone', 80);
-                $table->date('data_nascimento', 80);
+                $table->string('email');
+                $table->string('telefone');
+                $table->date('data_nascimento');
                 $table->string('organizacao', 80);
                 $table->timestamps();
+<<<<<<< HEAD
                 $table->softdeletes();
             });   
         }     
+=======
+                $table->softDeletes();
+        	});        
+>>>>>>> c795c8608a1822ea307cae7a231e2ce32eae5c08
     }
 
     /**
@@ -37,6 +42,6 @@ class Participantes extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('participantes');
     }
 }
