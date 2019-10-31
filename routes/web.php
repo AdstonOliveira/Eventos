@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/evento/index','ControllerEvento@index');
+Route::get('/evento/create', 'ControllerEvento@create');

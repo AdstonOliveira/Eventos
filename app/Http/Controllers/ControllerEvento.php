@@ -23,7 +23,7 @@ class ControllerEvento extends Controller
      */
     public function create()
     {
-        //
+        return view('Evento.form');
     }
 
     /**
