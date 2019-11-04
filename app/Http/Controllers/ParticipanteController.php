@@ -31,7 +31,12 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'participante' => '',
+            'url' => 'participante',
+            'method' => 'POST',
+        ];
+        return view('participante.form', compact('data'));
     }
 
     /**
