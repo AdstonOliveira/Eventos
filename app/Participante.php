@@ -1,6 +1,7 @@
 <?php
-namespace app\Entities;
+namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Participante extends Model{
     

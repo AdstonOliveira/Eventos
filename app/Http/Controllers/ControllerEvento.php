@@ -26,8 +26,7 @@ class ControllerEvento extends Controller
 
     public function create()
     {
-        
-        //
+        return view('Evento.form');
     }
 
     /**
@@ -65,7 +64,7 @@ class ControllerEvento extends Controller
     {
        $evento = Evento::findOrFail($id);
 
-       return view('evento.evento', compact('evento'));
+       return view('Evento.main', compact('evento'));
     }
 
     /**
