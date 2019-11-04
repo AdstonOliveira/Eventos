@@ -16,14 +16,14 @@ class Participantes extends Migration
         if(!Schema::hasTable('participantes')){
         Schema::create('participantes', function (Blueprint $table)
 	 {
-           		$table->integer('id', true);
+           		$table->integer('id');
                 $table->string('nome');
                 $table->string('rg');
-                $table->string('cpf', 11);
+                $table->string('cpf');
                 $table->string('email');
                 $table->string('telefone');
                 $table->date('data_nascimento');
-                $table->string('organizacao', 80);
+                $table->string('organizacao');
                 $table->timestamps();
                 $table->softdeletes();
             });   
@@ -37,7 +37,7 @@ class Participantes extends Migration
      */
     public function down()
     {
-        Schema::drop('participantes');
+        Schema::dropIfExists('participantes');
     }
 }
 
