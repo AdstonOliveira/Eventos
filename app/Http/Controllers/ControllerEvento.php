@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Evento;
+use DB;
 
 class ControllerEvento extends Controller
 {
-    /**
+    /**protected $fillable = ['data', 'hora', 'nome', 'descricao', 'local'];
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -21,8 +23,10 @@ class ControllerEvento extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
+        
         //
     }
 
@@ -32,9 +36,23 @@ class ControllerEvento extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $evento = $request->all();
+        DB::beginTransaction();
+
+        try{
+            $evento->create();
+            DB::commit();
+            return back()->with('success', 'Salvo com sucesso');
+        }catch(\Exception $e){
+            DB::rollback();
+            return back()->with('error', 'Erro no servidor!');
+        }
+
+        
+
     }
 
     /**
@@ -45,7 +63,9 @@ class ControllerEvento extends Controller
      */
     public function show($id)
     {
-        //
+       $evento = Evento::findOrFail($id);
+
+       return view('evento.evento', compact('evento'));
     }
 
     /**
@@ -68,7 +88,18 @@ class ControllerEvento extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $evento = Evento::findOrFail($id);
+        $params = $request->all();
+
+        DB::beginTransaction();
+        try{
+            $evento->update($params);
+            DB::commit();
+            return back()->with('success', 'Evento alterado com sucesso');    
+        }catch (\Exception $e){
+            DB::rollback();
+        return back()->with('error', 'Ocorreu um erro ao salvar');
+        }
     }
 
     /**
@@ -79,6 +110,15 @@ class ControllerEvento extends Controller
      */
     public function destroy($id)
     {
-        //
+        $evento = Evento::withTrashed()->findOrFail($id);
+
+        if( $evento->trashed() ){
+            $evento->restore();
+            return back()->with('success','Evento restaurado');
+        }else{
+            $evento->delete();
+            return back()->with('success','Evento deletado');
+        }
+
     }
 }
