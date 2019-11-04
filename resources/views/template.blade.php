@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Eventos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/main.css') }}" />
-</head>
-<body>
-    <div class="nav">
-        <a href="/eventos">Eventos</a>
-        <a href="/participantes">Participantes</a>
+@extends('layouts.app')
+@section('content')
+<div class="card">
+    <div class="card-header">Painel</div>
+    <div class="card-body">
+        <h6>Bem vindo!</h6>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Menu</div>
+                    <div class="card-body">
+                    <a href="{{url('participante')}}" class="btn btn-outline-secondary">Participantes</a>
+                    <a href="{{url('evento')}}" class="btn btn-outline-secondary">Eventos</a>  
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div class="content">
-        @yield('content')
-    </div>
-</body>
-</html>
+</div>
+@stop

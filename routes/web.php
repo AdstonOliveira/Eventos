@@ -16,12 +16,19 @@ Route::get('/', function () {
 });
 
 //participante
-Route::resource('/participante', 'ParticipanteController');
+Route::get('participante/index','ControlleParticipante@index');
+
+Route::get('participante/create', 'ControllerParticipante@create');
+Route::delete('participante/delete/{id}', 'ControllerParticipante@destroy');
+Route::post('participante/novo', 'ControllerParticipante@create');
+Route::get('participante/{id}', 'ControllerParticipante@show');
+Route::delete('participante/delete/{id}', 'ControllerParticipante@destroy');
 
 
 
 //Evento
 Route::get('/evento/index','ControllerEvento@index');
+
 Route::get('/evento/create', 'ControllerEvento@create');
 Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
 Route::post('/evento/novo', 'ControllerEvento@create');
