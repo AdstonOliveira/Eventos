@@ -15,13 +15,11 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
+        $participantesInativos = Participante::onlyTrashed()->get();
+        $participantes = Participante::all();
+     
 
-        $data = [
-            'participantes' => Participante::all()
-
-        ];
-
-        return view('participante.index', compact('data'));
+        return view('participante.index', compact('participantes','participantesInativos'));
     }
 
     /**
@@ -189,6 +187,13 @@ class ParticipanteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $participantesInativo = Participante::withTrashed()->findOrFail($id);
+        if($participantesInativo->trashed()) {
+            $participantesInativo->restore();
+            return back()->with('success', 'Participante ativado com sucesso!');
+        } else {
+            $participantesInativo->delete();
+            return back()->with('success', 'Participante desativado com sucesso!');
+        }
     }
 }
