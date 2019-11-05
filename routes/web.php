@@ -16,13 +16,14 @@ Route::get('/', function () {
 });
 
 //participante
-Route::get('participante/index','ControlleParticipante@index');
+Route::resource('participante', 'ParticipanteController');
+// Route::get('participante/index','ControlleParticipante@index');
 
-Route::get('participante/create', 'ControllerParticipante@create');
-Route::delete('participante/delete/{id}', 'ControllerParticipante@destroy');
-Route::post('participante/novo', 'ControllerParticipante@create');
-Route::get('participante/{id}', 'ControllerParticipante@show');
-Route::delete('participante/delete/{id}', 'ControllerParticipante@destroy');
+// Route::get('participante/create', 'ControllerParticipante@create');
+// Route::delete('participante/delete/{id}', 'ControllerParticipante@destroy');
+// Route::post('participante/novo', 'ControllerParticipante@create');
+// Route::get('participante/{id}', 'ControllerParticipante@show');
+// Route::delete('participante/delete/{id}', 'ControllerParticipante@destroy');
 
 
 

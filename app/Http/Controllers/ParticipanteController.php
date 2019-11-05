@@ -16,10 +16,10 @@ class ParticipanteController extends Controller
     public function index()
     {
       
-        //$data = [
-           //'participantesAtivos' => Participante::all()
+        $data = [
+           'participantes' => Participante::all()
            
-        //];
+        ];
         
         return view('participante.index', compact('data'));
     }
@@ -31,10 +31,12 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
+   
         $data = [
             'participante' => '',
             'url' => 'participante',
             'method' => 'POST',
+            
         ];
         return view('participante.form', compact('data'));
     }
@@ -47,8 +49,36 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request) {
         
+        DB::beginTransaction();
+        
+        try {
+        
+           $participante = new Participante;
+           $participante->nome = $request->nome;
+           $participante->rg = $request->rg;
+           $participante->cpf = $request->cpf ;
+           $participante->email = $request->email;
+           $participante->telefone = $request->telefone;
+           $participante->data_nascimento = $request->data_nascimento;
+           $participante->organizacao = $request->organizacao;
+           $participante->save();
+           
+            DB::commit();
+            return redirect('participante')->with('success', 'Participante cadastrado com sucesso!');
+            
+        } catch(\Exception $e) {
+           
+            DB::rollback();
+            return redirect('participante')->with('error', 'Erro no servidor! Participante não cadastrado!');
+        }
+
+
+
+
+
+
         //abaixo está a criação do participante no banco usando as requisições do postman, isto é, sem o formulário 
-         
+ /*  
         DB::beginTransaction();
         try {
             $dados = new Participante;
@@ -68,7 +98,7 @@ class ParticipanteController extends Controller
             DB::rollback();
             return back()->with('error', 'Ops! Ocorreu um erro.');
         }
-
+*/
         //$participante = $request->all();
         //DB::beginTransaction();
 
