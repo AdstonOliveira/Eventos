@@ -89,7 +89,7 @@
                                 <form action="{{url('participante', [$participante->id])}}" method="POST">
                                     {{method_field('DELETE')}}
                                     {{ csrf_field() }}
-                                    <input type="submit" class="btn btn-danger" value="Ativar" />
+                                    <input type="submit" class="btn btn-primary" value="Ativar" />
                                 </form>
                             </td>
                         </tr>

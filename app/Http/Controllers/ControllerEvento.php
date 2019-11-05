@@ -16,8 +16,9 @@ class ControllerEvento extends Controller
     public function index()
     {
         $eventos = Evento::all();
+        $inativos = Evento::onlyTrashed()->get();
 
-        return view('Evento.index', compact('eventos'));
+        return view('Evento.index', compact('eventos','inativos'));
     }
 
     /**
@@ -67,7 +68,7 @@ class ControllerEvento extends Controller
     {
        $evento = Evento::findOrFail($id);
 
-       return view('Evento.main', compact('evento'));
+       return view('Evento.form', compact('evento'));
     }
 
     /**
@@ -116,6 +117,7 @@ class ControllerEvento extends Controller
 
         if( $evento->trashed() ){
             $evento->restore();
+
             return back()->with('success','Evento restaurado');
         }else{
             $evento->delete();
