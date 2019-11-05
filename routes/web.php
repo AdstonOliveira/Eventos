@@ -33,8 +33,5 @@ Route::get('/evento','ControllerEvento@index');
 Route::get('/evento/novo', 'ControllerEvento@create');
 
 Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
-
 Route::post('/evento/novo', 'ControllerEvento@store');
-
 Route::get('/evento/{id}', 'ControllerEvento@show');
-Route::delete('/evento/delete/{id}', 'ControllerEvento@destroy');
