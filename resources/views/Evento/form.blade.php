@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     
     <meta charset="utf-8">
@@ -17,8 +17,9 @@
         <div class="card">
             <div class="card-title bg bg-primary d-flex justify-content-center"><h3 class="text-light">Evento</h3></div>
             <div class="card-body">
-            <form action="#">
-            
+
+            <form action="/evento/novo" method="POST">
+                @csrf
                 <div class="row mb-3">
                     <div class="form-group col-sm-6">
                         <label for="data"><h4>Data</h4></label>

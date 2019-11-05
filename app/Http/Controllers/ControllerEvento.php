@@ -39,10 +39,11 @@ class ControllerEvento extends Controller
     public function store(Request $request)
     {
         $evento = $request->all();
-        DB::beginTransaction();
+        // dd($evento);
 
+        DB::beginTransaction();
         try{
-            $evento->create();
+            Evento::create($evento);
             DB::commit();
             return back()->with('success', 'Salvo com sucesso');
         }catch(\Exception $e){

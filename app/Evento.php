@@ -12,12 +12,15 @@ class Evento extends Model
     protected $table = 'evento';
 
     protected $fillable = ['data', 'hora', 'nome', 'descricao', 'local'];
+    protected $dates = ['data'];
 
-    public function setDataAttribute($val){
-        $date = \DateTime::createFromFormat('d/m/Y', $val);
-        $this->attributes["data"]= $date->format('Y-m-d');
-    }
+    // public function setDataAttribute($val){
+    //     $date = \DateTime::createFromFormat('d/m/Y', $val);
+    //     $this->attributes["data"]= $date->format('Y-m-d');
+    // }
+    
     public function getDataAttribute(){
         return date("d/m/Y", strtotime($this->attributes["data"]));
     }
+
 }
