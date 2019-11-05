@@ -5,7 +5,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            <div class="card border-success mb-3">
+            <div class="card">
                 <div class="card-header text-center text-success"><b>Relações de Participantes</b></div>
                 <div class="col-md-12" style="padding: 20px;">
                     <div class="text-right">
@@ -60,7 +60,7 @@
     <div class="row">
 
         <div class="col-md-12">
-        <div class="card border-danger mb-3" >
+        <div class="card" >
                 <div class="card-header text-center text-danger"><b>Participantes Inativos</b></div>
                 <table class="table">
                     <thead>
