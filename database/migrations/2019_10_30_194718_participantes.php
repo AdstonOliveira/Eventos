@@ -19,7 +19,7 @@ class Participantes extends Migration
            		$table->integer('id', true);
                 $table->string('nome');
                 $table->string('rg');
-                $table->string('cpf', 11);
+                $table->string('cpf');
                 $table->string('email');
                 $table->string('telefone');
                 $table->date('data_nascimento');

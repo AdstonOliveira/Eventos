@@ -4,7 +4,7 @@
     <div class="card-header">{{$data['participante'] ? 'Editar participante' : 'Novo participante'}}</div>
     <div class="card-body">
         <form method="POST" action="{{url($data['url'])}}">
-        @if(isset($participante))
+        @if($data['method'] == 'PUT')
             @method('PUT')
             @endif
             @csrf

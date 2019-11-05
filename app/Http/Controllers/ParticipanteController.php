@@ -15,12 +15,12 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-      
+
         $data = [
-           'participantes' => Participante::all()
-           
+            'participantes' => Participante::all()
+
         ];
-        
+
         return view('participante.index', compact('data'));
     }
 
@@ -31,12 +31,12 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-   
+
         $data = [
             'participante' => '',
             'url' => 'participante',
             'method' => 'POST',
-            
+
         ];
         return view('participante.form', compact('data'));
     }
@@ -47,27 +47,27 @@ class ParticipanteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        
+    public function store(Request $request)
+    {
+
         DB::beginTransaction();
-        
+
         try {
-        
-           $participante = new Participante;
-           $participante->nome = $request->nome;
-           $participante->rg = $request->rg;
-           $participante->cpf = $request->cpf ;
-           $participante->email = $request->email;
-           $participante->telefone = $request->telefone;
-           $participante->data_nascimento = $request->data_nascimento;
-           $participante->organizacao = $request->organizacao;
-           $participante->save();
-           
+
+            $participante = new Participante;
+            $participante->nome = $request->nome;
+            $participante->rg = $request->rg;
+            $participante->cpf = $request->cpf;
+            $participante->email = $request->email;
+            $participante->telefone = $request->telefone;
+            $participante->data_nascimento = $request->data_nascimento;
+            $participante->organizacao = $request->organizacao;
+            $participante->save();
+
             DB::commit();
             return redirect('participante')->with('success', 'Participante cadastrado com sucesso!');
-            
-        } catch(\Exception $e) {
-           
+        } catch (\Exception $e) {
+
             DB::rollback();
             return redirect('participante')->with('error', 'Erro no servidor! Participante não cadastrado!');
         }
@@ -78,7 +78,7 @@ class ParticipanteController extends Controller
 
 
         //abaixo está a criação do participante no banco usando as requisições do postman, isto é, sem o formulário 
- /*  
+        /*  
         DB::beginTransaction();
         try {
             $dados = new Participante;
@@ -111,9 +111,9 @@ class ParticipanteController extends Controller
         //     return back()->with('error', 'Erro no servidor!');
         //}
 
-        
 
-        
+
+
     }
 
     /**
@@ -139,12 +139,11 @@ class ParticipanteController extends Controller
 
         $data = [
             'participante' => $participante,
-            'url'     => 'participante/'.$id,
+            'url'     => 'participante/' . $id,
             'method'  => 'PUT'
         ];
 
         return view('participante.form', compact('data'));
-       
     }
 
     /**
@@ -156,7 +155,30 @@ class ParticipanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $participante = Participante::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+           
+           
+            $participante->nome = $request->nome;
+            $participante->rg = $request->rg;
+            $participante->cpf = $request->cpf;
+            $participante->email = $request->email;
+            $participante->telefone = $request->telefone;
+            $participante->data_nascimento = $request->data_nascimento;
+            $participante->organizacao = $request->organizacao;
+            $participante->save();
+            
+
+            DB::commit();
+            
+            return redirect('participante')->with('success', 'Participante atualizado com sucesso!');
+        } catch (\Exception $e) {
+           
+            DB::rollback();
+            return redirect('participante')->with('error', 'Erro no servidor! Participante não atualizado!');
+        }
     }
 
     /**
