@@ -23,4 +23,8 @@ class Evento extends Model
         return date("d/m/Y", strtotime($this->attributes["data"]));
     }
 
+    public function participantes(){
+        return $this->belongsToMany('App\Participante','participante_evento','evento_id','participante_id');
+    }
+
 }
