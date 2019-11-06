@@ -67,7 +67,7 @@ class ControllerEvento extends Controller
     public function show($id)
     {
        $evento = Evento::findOrFail($id);
-
+       
        return view('Evento.form', compact('evento'));
     }
 
@@ -77,9 +77,20 @@ class ControllerEvento extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $evento = Evento::findOrFail($id);
+        $params = $request->all();
+
+        DB::beginTransaction();
+        try{
+            $evento->update($params);
+            DB::commit();
+            return back()->with('success', 'Editado com sucesso');
+        }catch (\Exception $e){
+            DB::rollback();
+            return back()->with('error', 'Ocorreu um erro ao salvar');
+        }
     }
 
     /**

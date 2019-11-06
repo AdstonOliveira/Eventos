@@ -10,8 +10,8 @@
                 <div class="card">
                     <div class="card-header">Menu</div>
                     <div class="card-body">
-                    <a href="{{url('participante')}}" class="btn btn-outline-secondary">Participantes</a>
-                    <a href="{{url('evento')}}" class="btn btn-outline-secondary">Eventos</a>  
+                        <a href="{{url('participante')}}" class="btn btn-outline-secondary">Participantes</a>
+                        <a href="{{url('evento')}}" class="btn btn-outline-secondary">Eventos</a>  
                     </div>
                 </div>
             </div>

@@ -17,8 +17,8 @@ class ParticipanteEvento extends Migration
             $table->integer('evento_id');
             $table->integer('participante_id');
 
-            $table->foreign('evento_id')->references('id')->on('evento');
-            $table->foreign('participante_id')->references('id')->on('participantes');
+            // $table->foreign('evento_id')->references('id')->on('evento');
+            // $table->foreign('participante_id')->references('id')->on('participantes');
         });
         
         Schema::table('participante_evento', function (Blueprint $table)
@@ -35,6 +35,6 @@ class ParticipanteEvento extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop("participante_evento");
     }
 }

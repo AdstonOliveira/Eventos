@@ -21,11 +21,13 @@
         </a>
 
         <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav mt-2 mt-lg-0 ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('participante')}}">Participantes</a>
-                <a class="nav-link" href="{{url('evento')}}">Eventos</a>
-            </li>
+            <ul class="navbar-nav mt-2 mt-lg-0 ml-auto font-weight-bold" style="text-shadow: 3px 2px 2px rgba(150, 150, 150, 1);">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('participante')}}">Participantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('evento')}}">Eventos</a>
+                </li>
         </div>
     </nav>
 
