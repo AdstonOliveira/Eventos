@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Evento;
+use App\Participante;
 use DB;
 
 class ControllerEvento extends Controller
@@ -136,4 +137,13 @@ class ControllerEvento extends Controller
         }
 
     }
+
+    public function adicionar($id){
+        $evento = Evento::findOrFail($id);
+        $participantes = Participante::all();
+
+        return view('Evento.adicionar', compact('evento','participantes'));
+    }
+
+
 }

@@ -32,7 +32,8 @@ Route::get('/evento','ControllerEvento@index');
 Route::get('/evento/novo', 'ControllerEvento@create');
 
 Route::post('/evento/novo', 'ControllerEvento@store');
-
 Route::delete('/evento/{id}', 'ControllerEvento@destroy');
 Route::get('/evento/{id}', 'ControllerEvento@show');
 Route::put('evento/{id}', 'ControllerEvento@edit');
+
+Route::get('/evento/adicionar/{id}','ControllerEvento@adicionar');

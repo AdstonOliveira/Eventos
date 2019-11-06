@@ -12,5 +12,9 @@ class Participante extends Model{
     protected $fillable = ['nome', 'rg', 'cpf', 'email', 'telefone', 'data_nascimento', 'organizacao '];
 
     public $timestamps = false;
+
+    public function eventos(){
+        return $this->belongsToMany('App\Evento','participante_evento','participante_id','evento_id');
+    }
     
 }   
