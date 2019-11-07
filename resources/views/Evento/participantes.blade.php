@@ -49,13 +49,18 @@
                             <td>{{$participante->telefone}}</td>
                             <td>{{$participante->organizacao}}</td>                          
                             <td>
-                                <div class="btn-group" role="group" aria-label="First group">
+                                <div class="d-flex justify-content-between btn-group" role="group" aria-label="First group">
                                         <form action="{{ url( '/evento/remover/'.$evento->id.'/'.$participante->id ) }}" method="POST">
                                             {{method_field('DELETE')}}
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-danger">Remover</button>
                                         </form>
-                                    </div>
+                                        <a href="" class="btn btn-outline-info">
+                                            Gerar Cartão
+                                        </a>
+
+                                </div>
+
                             </td>
                         </tr>
                         @endforeach

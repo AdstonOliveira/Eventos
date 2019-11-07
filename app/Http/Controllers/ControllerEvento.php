@@ -142,7 +142,7 @@ class ControllerEvento extends Controller
         $evento = Evento::findOrFail($id);
         $participantes = Participante::all();
 
-        return view('Evento.adicionar', compact('evento','participantes'));
+        return view('Evento.cracha', compact('evento','participantes'));
     }
 
     public function indexParticipante($id){
