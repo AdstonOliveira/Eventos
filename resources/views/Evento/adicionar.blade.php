@@ -6,6 +6,7 @@
 
             <div class="row">
                 <div class="col col-3">
+                    
                 <form method="POST" action="{{url('/evento/adicionar/'.$evento->id)}}"> 
                     @csrf
                     <select id="part" name="participante" class="form-control">
@@ -40,11 +41,4 @@
     </div>
 </div>
 @stop
-@section('scripts')
-<script>
-    $( document ).ready(function() {
-        
-    });
 
-</script>    
-@endsection

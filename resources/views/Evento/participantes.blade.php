@@ -2,13 +2,33 @@
 @section('content')
 <div class="container">
     <div class="row">
-
         <div class="col-md-12">
             <div class="card border-success mb-3">
                 <div class="card-header text-center text-success"><b>Participantes do Evento: {{$evento->nome}}</b></div>
                 <div class="col-md-12" style="padding: 20px;">
-                    <div class="text-right">
-                        <a href="{{url('evento/adicionar/'.$evento->id)}}" class="btn btn-success">Adicionar Participante(s)</a>
+                    <div class="row">
+                    <div class="col col-6">
+                        <form method="POST" action="{{url('/evento/adicionar/'.$evento->id)}}"> 
+                            @csrf
+                            <select id="lista" name="participante" class="form-control">
+        
+                            @forelse ($result as $lista)
+                                <option value = "{{ $lista->id }}">
+                                    {{$lista->nome}}
+                                </option> 
+                            @empty 
+                                <option value = "" disabled selected>Necessário cadastrar ao menos um participante</option>
+                            @endforelse
+                            </select>
+                        </div>
+                        <div class="col align-self-end">
+                            <button id="add" class="btn btn-success">Adicionar</button>
+                        </div>
+                    </form>
+                        <div class="col col-2">
+                            <a href="{{url('/participante/create')}}" class="nav-link">Cadastre aqui</a>
+                        </div>
+                        
                     </div>
                 </div>
                 <table class="table text-center">
@@ -92,3 +112,8 @@
 
 
 @stop
+@section('scripts')
+<script>
+    
+</script>    
+@endsection

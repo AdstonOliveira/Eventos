@@ -146,16 +146,23 @@ class ControllerEvento extends Controller
     }
 
     public function indexParticipante($id){
+
         $evento = Evento::findOrFail($id);
+
         $evento_participantes = $evento->participantes;
-        return view('Evento.participantes', compact('evento', 'evento_participantes'));
+        
+        $participantes = Participante::all();
+
+        $result = $participantes->diff($evento_participantes);
+        // dd($result);
+
+        return view('Evento.participantes', compact('evento', 'evento_participantes','result'));
     }
 
     public function adicionar(Request $request, $id){
         
         $evento = Evento::findOrFail($id);
         $participante = $request->participante;
-        
 
         DB::beginTransaction();
         
