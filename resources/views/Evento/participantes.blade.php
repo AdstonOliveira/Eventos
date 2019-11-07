@@ -5,43 +5,37 @@
 
         <div class="col-md-12">
             <div class="card border-success mb-3">
-                <div class="card-header text-center text-success"><b>Relações de Eventos</b></div>
+                <div class="card-header text-center text-success"><b>Participantes do Evento: {{$evento->nome}}</b></div>
                 <div class="col-md-12" style="padding: 20px;">
                     <div class="text-right">
-                        <a href="{{url('evento/novo')}}" class="btn btn-success">Novo Evento</a>
+                        <a href="{{url('evento/adicionar/'.$evento->id)}}" class="btn btn-success">Adicionar Participante(s)</a>
                     </div>
                 </div>
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th>Data</th>
-                            <th>Hora</th>
-                            <th>Evento</th>
-                            <th>Descrição</th>
-                            <th>Local</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Organização</th>
                             <th colspan='3'>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($eventos as $evento)
+                        @foreach($evento_participantes as $participante)
                         <tr>
-                            <td>{{$evento->data}}</td>
-                            <td>{{$evento->hora}}</td>
-                            <td>{{$evento->nome}}</td>
-                            <td>{{$evento->descricao}}</td>
-                            <td>{{$evento->local}}</td>                            
+                            <td>{{$participante->nome}}</td>
+                            <td>{{$participante->email}}</td>
+                            <td>{{$participante->telefone}}</td>
+                            <td>{{$participante->organizacao}}</td>                          
                             <td>
                                 <div class="btn-group" role="group" aria-label="First group">
-                                    <a href="{{ url( '/evento/participantes/'.$evento->id ) }}" class="btn btn-primary">Participantes</a>
-                                </div>
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <a href="{{ url( 'evento/'.$evento->id ) }}" class="btn btn-warning" style="margin-right:5px">Editar</a>
-                                    <form action="{{ url( 'evento/'.$evento->id ) }}" method="POST">
-                                        {{method_field('DELETE')}}
-                                        {{ csrf_field() }}
-                                        <input type="submit" class="btn btn-danger" value="Desativar" />
-                                    </form>
-                                </div>
+                                        <form action="{{ url( '/evento/remover/'.$evento->id.'/'.$participante->id ) }}" method="POST">
+                                            {{method_field('DELETE')}}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-danger">Remover</button>
+                                        </form>
+                                    </div>
                             </td>
                         </tr>
                         @endforeach
@@ -52,7 +46,7 @@
     </div>
 </div>
 <!--Eventos Inativos -->
-<div class="container">
+{{-- <div class="container">
     <div class="row">
 
         <div class="col-md-12">
@@ -94,7 +88,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 @stop

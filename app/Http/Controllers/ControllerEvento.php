@@ -138,11 +138,54 @@ class ControllerEvento extends Controller
 
     }
 
-    public function adicionar($id){
+    public function indexAdicionar($id){
         $evento = Evento::findOrFail($id);
         $participantes = Participante::all();
 
         return view('Evento.adicionar', compact('evento','participantes'));
+    }
+
+    public function indexParticipante($id){
+        $evento = Evento::findOrFail($id);
+        $evento_participantes = $evento->participantes;
+        return view('Evento.participantes', compact('evento', 'evento_participantes'));
+    }
+
+    public function adicionar(Request $request, $id){
+        
+        $evento = Evento::findOrFail($id);
+        $participante = $request->participante;
+        
+
+        DB::beginTransaction();
+        
+        try{
+            $evento->participantes()->attach($participante);
+            DB::commit();
+            return back()->with('success', 'Participante adicionado ao evento com sucesso!');    
+        }
+        catch (\Exception $e){
+            DB::rollback();
+            return back()->with('error', 'Ocorreu um erro ao salvar');
+        }
+        
+    }
+
+    public function removerParticipante($idevento, $idparticipante){
+        $evento = Evento::findOrFail($idevento);
+        
+        DB::beginTransaction();
+
+        try{
+            $evento->participantes()->detach($idparticipante);
+            DB::commit();
+            return back()->with('success', 'Participante removido do evento!');    
+        }
+        catch (\Exception $e){
+            DB::rollback();
+            return back()->with('error', 'Ocorreu um erro ao salvar');
+        }
+
     }
 
 

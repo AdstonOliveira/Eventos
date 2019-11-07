@@ -6,7 +6,9 @@
 
             <div class="row">
                 <div class="col col-3">
-                    <select id="part" class="form-control">
+                <form method="POST" action="{{url('/evento/adicionar/'.$evento->id)}}"> 
+                    @csrf
+                    <select id="part" name="participante" class="form-control">
 
                     @forelse ($participantes as $participante)
                         <option value = "{{ $participante->id }}">
@@ -14,7 +16,6 @@
                         </option> 
                     @empty 
                         <option value = "" disabled selected>Necessário cadastrar ao menos um participante</option>
-                    </select>
 
                         <a href="{{url('/participante/create')}}" class="nav-link">Cadastre aqui</a>
                     @endforelse
@@ -23,7 +24,7 @@
                 </div>
                 
                 <div class="col">
-                    <a href="" class="btn btn-success">Adicionar</a>
+                    <button type="submit" class="btn btn-success">Adicionar</a>
                 </div>
 
 
