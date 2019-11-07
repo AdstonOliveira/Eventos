@@ -8,29 +8,34 @@
                 <div class="col-md-12" style="padding: 20px;">
                     <div class="row">
                     <div class="col col-6">
+
                         <form method="POST" action="{{url('/evento/adicionar/'.$evento->id)}}"> 
                             @csrf
                             <select id="lista" name="participante" class="form-control">
-        
-                            @forelse ($result as $lista)
-                                <option value = "{{ $lista->id }}">
-                                    {{$lista->nome}}
-                                </option> 
-                            @empty 
-                                <option value = "" disabled selected>Necessário cadastrar ao menos um participante</option>
-                            @endforelse
-                            </select>
+                                @forelse ($result as $lista)
+                                    <option value = "{{ $lista->id }}">
+                                        {{$lista->nome}}
+                                    </option> 
+                                @empty
+                                    <option value = "" disabled selected>Não há mais participantes disponiveis</option>
+                                @endforelse
+                                </select>
                         </div>
-                        <div class="col align-self-end">
+                        <div class="col">
                             <button id="add" class="btn btn-success">Adicionar</button>
                         </div>
                     </form>
-                        <div class="col col-2">
-                            <a href="{{url('/participante/create')}}" class="nav-link">Cadastre aqui</a>
+
+                        <div class="col col-md-3">
+                            <div class="row">                    
+                                <a href="{{ url('/evento/pdf/'.$evento->id) }}" target="_blank" class="btn btn-light">Imprimir Lista</a>
+                                <a href="{{url('/participante/create')}}" class="nav-link">Cadastre aqui</a>
+                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
+
                 <table class="table text-center">
                     <thead>
                         <tr>
@@ -50,14 +55,14 @@
                             <td>{{$participante->organizacao}}</td>                          
                             <td>
                                 <div class="d-flex justify-content-between btn-group" role="group" aria-label="First group">
-                                        <form action="{{ url( '/evento/remover/'.$evento->id.'/'.$participante->id ) }}" method="POST">
-                                            {{method_field('DELETE')}}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger">Remover</button>
-                                        </form>
-                                        <a href="" class="btn btn-outline-info">
+                                    <form action="{{ url('/evento/remover/'.$evento->id.'/'.$participante->id ) }}" method="POST">
+                                        {{method_field('DELETE')}}
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-danger">Remover</button>
+                                    </form>
+                                    <a target="_blank" href="{{url('/evento/cracha/'.$evento->id.'/'.$participante->id )}}" class="btn btn-outline-info">
                                             Gerar Cartão
-                                        </a>
+                                    </a>
 
                                 </div>
 
@@ -119,6 +124,8 @@
 @stop
 @section('scripts')
 <script>
+
+
     
 </script>    
 @endsection

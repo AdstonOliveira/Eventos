@@ -37,8 +37,20 @@ Route::get('/evento/{id}', 'ControllerEvento@show');
 Route::put('evento/{id}', 'ControllerEvento@edit');
 
 
-Route::get('/evento/adicionar/{id}','ControllerEvento@indexAdicionar');
+Route::get('/evento/cracha/{idEvento}/{idParticipante}','ControllerEvento@cracha');
 Route::post('/evento/adicionar/{id}/', 'ControllerEvento@adicionar');
 
-Route::get('/evento/participantes/{id}', 'ControllerEvento@indexParticipante');
-Route::delete('/evento/remover/{idevento}/{idparticipante}', 'ControllerEvento@removerParticipante');
+Route::get('/evento/participantes/{idEvento}', 'ControllerEvento@indexParticipante');
+Route::delete('/evento/remover/{idEvento}/{idparticipante}', 'ControllerEvento@removerParticipante');
+
+
+Route::get('qr-code-g', function () {
+    \QrCode::size(800)
+              ->format('png')
+              ->generate('Eventos', public_path('images/qrcode.png'));
+      
+    return view('qrCode');
+      
+});
+Route::get('/evento/pdf/{idEvento}', 'ControllerEvento@pdfview');
+

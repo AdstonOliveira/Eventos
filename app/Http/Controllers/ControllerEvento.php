@@ -138,19 +138,17 @@ class ControllerEvento extends Controller
 
     }
 
-    public function indexAdicionar($id){
-        $evento = Evento::findOrFail($id);
-        $participantes = Participante::all();
-
-        return view('Evento.cracha', compact('evento','participantes'));
+    public function cracha($idEvento, $idParticipante){
+        $evento = Evento::findOrFail($idEvento);
+        $participante = $evento->participantes()->where('id','=',$idParticipante)->get();
+        // dd($participante);   
+        return view('Evento.cracha', compact('evento','participante'));
     }
 
     public function indexParticipante($id){
 
         $evento = Evento::findOrFail($id);
-
         $evento_participantes = $evento->participantes;
-        
         $participantes = Participante::all();
 
         $result = $participantes->diff($evento_participantes);
@@ -163,13 +161,17 @@ class ControllerEvento extends Controller
         
         $evento = Evento::findOrFail($id);
         $participante = $request->participante;
-
+        
         DB::beginTransaction();
         
         try{
-            $evento->participantes()->attach($participante);
-            DB::commit();
-            return back()->with('success', 'Participante adicionado ao evento com sucesso!');    
+            if( is_null($participante) ){
+                return back()->with('error', 'Não há nenhum participante selecionado');
+            }else{
+                $evento->participantes()->attach($participante);
+                DB::commit();
+                return back()->with('success', 'Participante adicionado ao evento com sucesso!');    
+            }
         }
         catch (\Exception $e){
             DB::rollback();
@@ -195,5 +197,12 @@ class ControllerEvento extends Controller
 
     }
 
+    public function pdfView($idEvento){
+
+        $evento = Evento::findOrFail($idEvento);
+        $pdf = \PDF::loadView('Evento.lista', compact($evento));
+
+        return $pdf->stream();
+    }
 
 }
