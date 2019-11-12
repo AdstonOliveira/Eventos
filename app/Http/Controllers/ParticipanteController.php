@@ -153,11 +153,12 @@ class ParticipanteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $participante = Participante::findOrFail($id);
-
+      
         DB::beginTransaction();
         try {
-           
+          
            
             $participante->nome = $request->nome;
             $participante->rg = $request->rg;
