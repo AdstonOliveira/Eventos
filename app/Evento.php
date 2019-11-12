@@ -18,11 +18,11 @@ class Evento extends Model
     //     $date = \DateTime::createFromFormat('d/m/Y', $val);
     //     $this->attributes["data"]= $date->format('Y-m-d');
     // }
-
+/*
     public function getDataAttribute(){
         return date("d/m/Y", strtotime($this->attributes["data"]));
     }
-
+*/
     public function participantes(){
         return $this->belongsToMany('App\Participante','participante_evento','evento_id','participante_id');
     }
