@@ -1,18 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
-    <div class="row">
+<div class="d-flex flex-column flex-wrap">
 
-        <div class="col-md-12">
+    <div class="row ">
+        <div class=" col-md-12 text-wrap">
             <div class="card">
                 <div class="card-header text-center text-success"><b>Relações de Participantes</b></div>
-                <div class="col-md-12" style="padding: 20px;">
-                    <div class="text-right">
+                <div class="col-md-12 text-right" style="padding: 20px;">
                         <a href="{{url('participante/create')}}" class="btn btn-success">Novo Participante</a>
-                    </div>
                 </div>
-                <table class="table">
+                
+                <table class="table table-sm-responsive">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -50,16 +49,16 @@
                         @endforeach
                     </tbody>
                 </table>
+                
             </div>
-        </div>
-    </div>
-</div>
+        </div>       
+    </div>    
+
+
 
 <!--Produto Inativo -->
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-12">
+<div class="row">
+        <div class="col col-md-12 text-wrap">
         <div class="card" >
                 <div class="card-header text-center text-danger"><b>Participantes Inativos</b></div>
                 <table class="table">
@@ -99,6 +98,5 @@
             </div>
         </div>
     </div>
-</div>
-
+    </div>
 @stop

@@ -5,7 +5,7 @@
     <div class="card-body">
         <form method="POST" action="{{url($data['url'])}}">
         @if($data['method'] == 'PUT')
-                
+             @method('PUT')
             @endif
             @csrf
             <!--NOME-->
