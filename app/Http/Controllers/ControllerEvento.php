@@ -200,7 +200,7 @@ class ControllerEvento extends Controller
     public function pdfView($idEvento){
 
         $evento = Evento::findOrFail($idEvento);
-        $pdf = \PDF::loadView('Evento.lista', compact($evento));
+        $pdf = \PDF::loadView('Evento.lista', compact('evento'));
 
         return $pdf->stream();
     }
