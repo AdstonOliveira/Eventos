@@ -13,7 +13,7 @@ class EventoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
 
 
 
@@ -26,7 +26,7 @@ class EventoRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'data' => ['required'],
             'hora' => ['required'],
             'nome' => ['required', 'min:3','max:20'],
@@ -37,9 +37,9 @@ class EventoRequest extends FormRequest
 
     public function messages(){
         return [
-            'required'              => 'Esse campo é obrigatório.',
-            'min'                   => 'O valor inserido é inferior ao valor minimo',
-            'max'                   => 'O valor inserido é superior ao valor maximo'
+            'required'              => 'O campo :attribute é obrigatório.',
+            'min'                   => 'O valor inserido no campo :attribute é inferior ao valor minimo',
+            'max'                   => 'O valor inserido no campo :attribute é superior ao valor maximo'
         ];
     }
 }

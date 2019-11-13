@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<!-- <span>{{ $errors->first('hora') }}</span> -->
 <div class="card">
     <div class="card-header">{{isset($evento) ? $evento->nome : 'Novo evento'}}</div>
         <div class="card-body">
