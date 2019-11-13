@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+
     <div class="row">
         <div class="col-md-12">
             <div class="card border-success mb-3">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <table class="table text-center">
+                <table class="table table-responsive-sm text-center">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -74,15 +74,15 @@
             </div>
         </div>
     </div>
-</div>
+
 <!--Eventos Inativos -->
-{{-- <div class="container">
+{{-- 
     <div class="row">
 
         <div class="col-md-12">
         <div class="card" >
             <div class="card-header text-center text-danger"><b>Eventos Inativos</b></div>
-                <table class="table text-center">
+                <table class="table table-responsive-sm text-center">
                 <thead>
                         <tr>
                             <th>Data</th>
@@ -118,7 +118,7 @@
             </div>
         </div>
     </div>
-</div> --}}
+ --}}
 
 
 @stop
