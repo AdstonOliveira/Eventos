@@ -60,9 +60,7 @@
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-danger">Remover</button>
                                     </form>
-                                    <a target="_blank" href="{{url('/evento/cracha/'.$evento->id.'/'.$participante->id )}}" class="btn btn-outline-info">
-                                            Gerar Cartão
-                                    </a>
+                                    
 
                                 </div>
 

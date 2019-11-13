@@ -139,11 +139,10 @@ class ControllerEvento extends Controller
 
     }
 
-    public function cracha($idEvento, $idParticipante){
-        $evento = Evento::findOrFail($idEvento);
-        $participante = $evento->participantes()->where('id','=',$idParticipante)->get();
+    public function cracha($idParticipante){
+        $participante = Participante::findOrFail($idParticipante)->get();
         // dd($participante);   
-        return view('Evento.cracha', compact('evento','participante'));
+        return view('Participante.cracha', compact('participante'));
     }
 
     public function indexParticipante($id){

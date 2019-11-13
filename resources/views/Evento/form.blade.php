@@ -21,7 +21,7 @@
 
                     <div class="form-group col-sm-6">
                         <label for="hora"><b>Horário</b></label>
-                        <input type="text" class="form-control" name="hora" value="{{isset($evento) ? $evento->hora : '' }}" required>
+                        <input type="time" class="form-control" name="hora" value="{{isset($evento) ? $evento->hora : '' }}" required>
                         <span class="alert-danger" role="alert">{{ $errors->first('hora') }}</span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success col-2">Salvar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </div>                    
                     
             </form>

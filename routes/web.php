@@ -37,7 +37,7 @@ Route::get('/evento/{id}', 'ControllerEvento@show');
 Route::put('evento/{id}', 'ControllerEvento@edit');
 
 
-Route::get('/evento/cracha/{idEvento}/{idParticipante}','ControllerEvento@cracha');
+Route::get('/participante/cracha/{idParticipante}','ControllerEvento@cracha');
 Route::post('/evento/adicionar/{id}/', 'ControllerEvento@adicionar');
 
 Route::get('/evento/participantes/{idEvento}', 'ControllerEvento@indexParticipante');

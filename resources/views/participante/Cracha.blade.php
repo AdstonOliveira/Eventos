@@ -20,16 +20,14 @@
 </head>
 <body>
     
-    <div class="d-flex container h-100 justify-content-center">
+    <div class="d-flex container h-75 justify-content-center">
         <div class="card w-50">
             <div class="card-header">
                 <div class="col">
                     <div class="row justify-content-center">
                         <h2>Identificação participante</h2>
                     </div>
-                    <div class="row justify-content-center">
-                        <h3>{{isset($evento) ? $evento->nome : 'Evento inexistente' }}</h3>
-                    </div>
+                    
                 </div>
             </div>
             <div class="card-body">
@@ -88,8 +86,8 @@
                     </div>
                 </div>
                 <div class="row justify-content-md-center">
-                        {!! QrCode::size(300)->generate(
-                            $evento->id.''.$participante->id.''.$participante->cpf.''.$participante->rg.''.$participante->organizacao
+                        {!! QrCode::size(225)->generate(
+                            $participante->id.''.$participante->cpf.''.$participante->rg.''.$participante->organizacao
                             ); 
                         !!}
                 </div>

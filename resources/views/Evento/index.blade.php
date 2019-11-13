@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex flex-column flex-wrap">
+<div class="flex flex-column flex-wrap">
     <div class="row">
 
-        <div class="col col-md-12 text-wrap">
+        <div class="col col-md-12 col-sm-6 text-wrap">
             <div class="card">
                 <div class="card-header text-center text-success"><b>Relações de Eventos</b></div>
                 <div class="col-md-12 text-right" style="padding: 20px;">
@@ -11,7 +11,7 @@
                         <a href="{{url('evento/novo')}}" class="btn btn-success">Novo Evento</a>
                     </div>
                 </div>
-                <table class="table table-responsive-sm">
+                <table class="table table-responsive-md table-responsive-sm">
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -57,7 +57,7 @@
         <div class="col col-md-12 text-wrap">
         <div class="card" >
             <div class="card-header text-center text-danger"><b>Eventos Inativos</b></div>
-                <table class="table table-responsive-sm">
+                <table class="table table-responsive-md table-responsive-sm">
                 <thead>
                         <tr>
                             <th>Data</th>
@@ -65,7 +65,7 @@
                             <th>Evento</th>
                             <th>Descrição</th>
                             <th>Local</th>
-                            <th colspan='3'>Ações</th>
+                            <th colspan='3' class="text-center">Ações</th>
                         </tr>
                     </thead>
                     <tbody>

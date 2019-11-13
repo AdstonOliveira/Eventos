@@ -28,7 +28,7 @@ class EventoRequest extends FormRequest
     {
         return [
             'data' => ['required'],
-            'hora' => ['required'],
+            'hora' => ['required','date_format:H:i'],
             'nome' => ['required', 'min:3','max:20'],
             'descricao' => ['required', 'min:1','max:40'],
             'local' => ['required', 'min:1','max:60'],
