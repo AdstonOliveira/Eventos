@@ -205,4 +205,10 @@ class ControllerEvento extends Controller
         return $pdf->stream();
     }
 
+    public function listaEventos($idParticipante){
+        $participante = Participante::findOrFail($idParticipante);
+        
+        return view('participante.participante', compact('participante'));
+    }
+
 }

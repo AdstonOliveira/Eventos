@@ -28,7 +28,7 @@ class EventoRequest extends FormRequest
     {
         return [
             'data' => ['required'],
-            'hora' => ['required','date_format:H:i'],
+            'hora' => ['required','date_format:H:i','regex:/(\d+\:\d+)/'],
             'nome' => ['required', 'min:3','max:20'],
             'descricao' => ['required', 'min:1','max:40'],
             'local' => ['required', 'min:1','max:60'],
@@ -39,7 +39,8 @@ class EventoRequest extends FormRequest
         return [
             'required'              => 'O campo :attribute é obrigatório.',
             'min'                   => 'O valor inserido no campo :attribute é inferior ao valor minimo',
-            'max'                   => 'O valor inserido no campo :attribute é superior ao valor maximo'
+            'max'                   => 'O valor inserido no campo :attribute é superior ao valor maximo',
+            'regex'                 => 'O campo :attribute é inválido',
         ];
     }
 }

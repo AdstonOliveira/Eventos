@@ -8,6 +8,7 @@
 
     <!-- STYLES -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @yield('styles')
 </head>
 <body>

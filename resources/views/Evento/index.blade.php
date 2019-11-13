@@ -31,7 +31,7 @@
                             <td>{{$evento->descricao}}</td>
                             <td>{{$evento->local}}</td>                            
                             <td>
-                                <div class="btn-group flex justify-content-between" role="group" aria-label="First group">
+                                <div class="btn-group d-flex justify-content-center" role="group" aria-label="First group">
                                     <a href="{{ url( '/evento/participantes/'.$evento->id ) }}" class="btn btn-primary mx-1">Participantes</a>
                                 
                                     <a href="{{ url( 'evento/'.$evento->id ) }}" class="btn btn-warning mx-1">Editar</a>
@@ -76,9 +76,8 @@
                             <td>{{$inativo->nome}}</td>
                             <td>{{$inativo->descricao}}</td>
                             <td>{{$inativo->local}}</td>
-                            <td class="flex justify-content-between">
-                                <div class="btn-group mr-2 " role="group" aria-label="First group">
-                                    <a href="{{url('evento/'.$inativo->id )}}" class="btn btn-warning" style="margin-right:5px">Editar</a>
+                            <td class="flex justify-content-center">
+                                <div class="btn-group d-flex justify-content-center" role="group" aria-label="First group">
                                     <form action="{{url( 'evento/'.$inativo->id )}}" method="POST">
                                         {{method_field('DELETE')}}
                                         {{ csrf_field() }}

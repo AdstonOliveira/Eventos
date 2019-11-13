@@ -208,4 +208,8 @@ class ParticipanteController extends Controller
             return back()->with('success', 'Participante desativado com sucesso!');
         }
     }
+
+    
+
+
 }
