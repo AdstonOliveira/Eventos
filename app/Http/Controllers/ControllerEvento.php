@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EventoRequest;
 use App\Evento;
 use App\Participante;
 use DB;
@@ -40,7 +41,7 @@ class ControllerEvento extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(EventoRequest $request)
     {
         $evento = $request->all();
         // dd($evento);
@@ -78,7 +79,7 @@ class ControllerEvento extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(EventoRequest $request, $id)
     {
         $evento = Evento::findOrFail($id);
         $params = $request->all();
@@ -101,7 +102,7 @@ class ControllerEvento extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventoRequest $request, $id)
     {
         $evento = Evento::findOrFail($id);
         $params = $request->all();
@@ -200,7 +201,7 @@ class ControllerEvento extends Controller
     public function pdfView($idEvento){
 
         $evento = Evento::findOrFail($idEvento);
-        $pdf = \PDF::loadView('Evento.lista', compact($evento));
+        $pdf = \PDF::loadView('Evento.lista', compact('evento'));
 
         return $pdf->stream();
     }
