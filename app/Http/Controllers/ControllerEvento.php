@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EventoRequest;
 use App\Evento;
 use App\Participante;
 use DB;
@@ -40,7 +41,7 @@ class ControllerEvento extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(EventoRequest $request)
     {
         $evento = $request->all();
         // dd($evento);
