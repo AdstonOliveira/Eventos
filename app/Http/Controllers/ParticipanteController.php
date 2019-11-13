@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Participante;
 use DB;
-
+use App\Http\Requests\ParticipanteRequest;
 class ParticipanteController extends Controller
 {
     /**
@@ -45,7 +45,7 @@ class ParticipanteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ParticipanteRequest $request)
     {
 
         DB::beginTransaction();
@@ -151,11 +151,22 @@ class ParticipanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ParticipanteRequest $request, $id)
     {
         
         $participante = Participante::findOrFail($id);
-      
+        // $participanteAtualizado = $request->all();
+
+        // $camposAtualizados = array();
+
+        // if($participanteAtualizado->nome != $participante->nome) {
+        //     array_push($participanteAtualizado->nome, $camposAtualizados); 
+        // }
+
+
+
+
+
         DB::beginTransaction();
         try {
           
@@ -167,7 +178,7 @@ class ParticipanteController extends Controller
             $participante->telefone = $request->telefone;
             $participante->data_nascimento = $request->data_nascimento;
             $participante->organizacao = $request->organizacao;
-            $participante->save();
+            $participante->update();
             
 
             DB::commit();

@@ -7,7 +7,7 @@ class Participante extends Model{
     
     use softDeletes;
     
-    protected $table = 'participantes';
+    protected $table = 'participante';
 
     protected $fillable = ['nome', 'rg', 'cpf', 'email', 'telefone', 'data_nascimento', 'organizacao '];
 

@@ -24,7 +24,7 @@ class ParticipanteEvento extends Migration
         Schema::table('participante_evento', function (Blueprint $table)
         {
             $table->foreign('evento_id')->references('id')->on('evento')->onDelete('cascade');
-            $table->foreign('participante_id')->references('id')->on('participantes');
+            $table->foreign('participante_id')->references('id')->on('participante');
         });
     }
 
