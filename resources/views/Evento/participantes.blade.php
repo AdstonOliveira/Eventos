@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <table class="table table-responsive-sm text-center">
+                <table class="table table-responsive-lg text-center">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -54,7 +54,7 @@
                             <td>{{$participante->telefone}}</td>
                             <td>{{$participante->organizacao}}</td>                          
                             <td>
-                                <div class="d-flex justify-content-between btn-group" role="group" aria-label="First group">
+                                <div class="d-flex justify-content-around btn-group" role="group" aria-label="First group">
                                     <form action="{{ url('/evento/remover/'.$evento->id.'/'.$participante->id ) }}" method="POST">
                                         {{method_field('DELETE')}}
                                         {{ csrf_field() }}
