@@ -79,7 +79,7 @@ class ControllerEvento extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(EventoRequest $request, $id)
     {
         $evento = Evento::findOrFail($id);
         $params = $request->all();
@@ -102,7 +102,7 @@ class ControllerEvento extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventoRequest $request, $id)
     {
         $evento = Evento::findOrFail($id);
         $params = $request->all();
