@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label for="nome"><b>Nome</b></label>
-                        <input type="text" class="form-control" name="nome" value="{{isset($evento) ? $evento->nome : '' }}">
+                        <input type="text" class="form-control" name="nome" minlength="3" maxlength="20" value="{{isset($evento) ? $evento->nome : '' }}">
                     </div>
 
                     <div class="form-group col-sm-6">
