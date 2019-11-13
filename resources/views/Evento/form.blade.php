@@ -26,18 +26,18 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label for="nome"><b>Nome</b></label>
-                        <input type="text" class="form-control" name="nome" value="{{isset($evento) ? $evento->nome : '' }}">
+                        <input type="text" class="form-control" name="nome" minlength="3" maxlength="20" value="{{isset($evento) ? $evento->nome : '' }}">
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label for="local"><b>Local</b></label>
-                        <input type="text" class="form-control" name="local" value="{{isset($evento) ? $evento->local : '' }}">
+                        <input type="text" class="form-control" name="local" minlength="1" maxlength="60" value="{{isset($evento) ? $evento->local : '' }}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <label for="local"><b>Descrição</b></label>
-                        <textarea class="form-control" name="descricao">{{isset($evento) ? $evento->descricao : '' }}</textarea>
+                        <textarea class="form-control" name="descricao" minlength="1" maxlength="40">{{isset($evento) ? $evento->descricao : '' }}</textarea>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
