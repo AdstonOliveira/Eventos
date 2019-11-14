@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ParticipanteRequest;
 use App\Participante;
 use DB;
-use App\Http\Requests\ParticipanteRequest;
+use Illuminate\Http\Request;
+
 class ParticipanteController extends Controller
 {
     /**
@@ -17,9 +18,8 @@ class ParticipanteController extends Controller
     {
         $participantesInativos = Participante::onlyTrashed()->get();
         $participantes = Participante::all();
-     
 
-        return view('participante.index', compact('participantes','participantesInativos'));
+        return view('participante.index', compact('participantes', 'participantesInativos'));
     }
 
     /**
@@ -50,6 +50,9 @@ class ParticipanteController extends Controller
 
         DB::beginTransaction();
 
+        $newDate = explode('/', $request->data_nascimento);
+        $newDate = $newDate[2] . '-' . $newDate[1] . '-' . $newDate[0];
+
         try {
 
             $participante = new Participante;
@@ -58,7 +61,7 @@ class ParticipanteController extends Controller
             $participante->cpf = $request->cpf;
             $participante->email = $request->email;
             $participante->telefone = $request->telefone;
-            $participante->data_nascimento = $request->data_nascimento;
+            $participante->data_nascimento = $newDate;
             $participante->organizacao = $request->organizacao;
             $participante->save();
 
@@ -67,36 +70,31 @@ class ParticipanteController extends Controller
         } catch (\Exception $e) {
 
             DB::rollback();
-            return redirect('participante')->with('error', 'Erro no servidor! Participante não cadastrado!');
+            return redirect('participante')->with('error', 'Erro no servidor! Participante não cadastrado! err:' . $e->getMessage());
         }
 
-
-
-
-
-
-        //abaixo está a criação do participante no banco usando as requisições do postman, isto é, sem o formulário 
-        /*  
+        //abaixo está a criação do participante no banco usando as requisições do postman, isto é, sem o formulário
+        /*
         DB::beginTransaction();
         try {
-            $dados = new Participante;
-            
-            $dados->name = $request->name;
-            $dados->rg = $request->rg;
-            $dados->cpf = $request->cpf ;
-            $dados->email = $request->email;
-            $dados->telefone = $request->telefone;
-            $dados->data_nascimento = $request->data_nascimento;
-            $dados->organizacao = $request->organizacao;
+        $dados = new Participante;
 
-            //$dados->save();
-            return $dados;
+        $dados->name = $request->name;
+        $dados->rg = $request->rg;
+        $dados->cpf = $request->cpf ;
+        $dados->email = $request->email;
+        $dados->telefone = $request->telefone;
+        $dados->data_nascimento = $request->data_nascimento;
+        $dados->organizacao = $request->organizacao;
+
+        //$dados->save();
+        return $dados;
 
         } catch (\Exception $e){
-            DB::rollback();
-            return back()->with('error', 'Ops! Ocorreu um erro.');
+        DB::rollback();
+        return back()->with('error', 'Ops! Ocorreu um erro.');
         }
-*/
+         */
         //$participante = $request->all();
         //DB::beginTransaction();
 
@@ -108,9 +106,6 @@ class ParticipanteController extends Controller
         //    DB::rollback();
         //     return back()->with('error', 'Erro no servidor!');
         //}
-
-
-
 
     }
 
@@ -137,8 +132,8 @@ class ParticipanteController extends Controller
 
         $data = [
             'participante' => $participante,
-            'url'     => 'participante/' . $id,
-            'method'  => 'PUT'
+            'url' => 'participante/' . $id,
+            'method' => 'PUT',
         ];
 
         return view('participante.form', compact('data'));
@@ -153,41 +148,31 @@ class ParticipanteController extends Controller
      */
     public function update(ParticipanteRequest $request, $id)
     {
-        
+
         $participante = Participante::findOrFail($id);
-        // $participanteAtualizado = $request->all();
-
-        // $camposAtualizados = array();
-
-        // if($participanteAtualizado->nome != $participante->nome) {
-        //     array_push($participanteAtualizado->nome, $camposAtualizados); 
-        // }
-
-
-
-
+        $newDate = explode('/', $request->data_nascimento);
+        $newDate = $newDate[2] . '-' . $newDate[1] . '-' . $newDate[0];
 
         DB::beginTransaction();
         try {
-          
-           
+
             $participante->nome = $request->nome;
             $participante->rg = $request->rg;
             $participante->cpf = $request->cpf;
             $participante->email = $request->email;
             $participante->telefone = $request->telefone;
-            $participante->data_nascimento = $request->data_nascimento;
+
+            $participante->data_nascimento = $newdate;
             $participante->organizacao = $request->organizacao;
             $participante->update();
-            
 
             DB::commit();
-            
+
             return redirect('participante')->with('success', 'Participante atualizado com sucesso!');
         } catch (\Exception $e) {
-           
+
             DB::rollback();
-            return redirect('participante')->with('error', 'Erro no servidor! Participante não atualizado!');
+            return redirect('participante')->with('error', 'Erro no servidor! Participante não atualizado!' . $e->getMessage());
         }
     }
 
@@ -200,7 +185,7 @@ class ParticipanteController extends Controller
     public function destroy($id)
     {
         $participantesInativo = Participante::withTrashed()->findOrFail($id);
-        if($participantesInativo->trashed()) {
+        if ($participantesInativo->trashed()) {
             $participantesInativo->restore();
             return back()->with('success', 'Participante ativado com sucesso!');
         } else {
@@ -208,8 +193,5 @@ class ParticipanteController extends Controller
             return back()->with('success', 'Participante desativado com sucesso!');
         }
     }
-
-    
-
 
 }
