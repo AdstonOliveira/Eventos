@@ -36,7 +36,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label><b>Data de Nascimento:</b></label>
-                        <input required type="text" autocomplete="off" placeholder="00/00/0000" name="data_nascimento" id="data_nascimento" class="form-control data" value="{{old('participante.data_nascimento', $data['participante'] ? $data['participante']->data_nascimento : '')}}">
+                        <input required type="text" autocomplete="off" placeholder="00/00/0000" name="data_nascimento" id="data_nascimento" class="form-control data" value="{{old('participante.data_nascimento', $data['participante'] ? date('d-m-Y', strtotime($data['participante']->data_nascimento)) : '')}}">
                         <span> {{ $errors->first('participante.data_nascimento') }} </span>
                         <span>{{ $errors->first('participante.valor') }}</span>
                     </div>
@@ -112,10 +112,10 @@
 $(document).ready(function () {
     $('#mensagem').hide()
 $('#rg').change(function(){
-    alert($('#rg').val())
+    
     if($('#rg').length>12){
     $('#rg').val('')
-    alert(1)
+    alert('O RG nap pode conter mais de 12 caracteres')
     }
     $("#rg").bind('paste', function(e) {
         e.preventDefault();
@@ -126,8 +126,6 @@ $('#rg').change(function(){
 $('#btnEnviar').click(function(e){
     e.preventDefault();
     validaCadastro()
-    
-
 })
      $("#data_nascimento").mask('00/00/0000')
      var cpf = $("#cpf");
@@ -153,7 +151,6 @@ $('#btnEnviar').click(function(e){
         var new_date= dtNasc.split('/')
         // colocando na ordem inversa (ano mes dia)
        new_date = new_date[2] + '-' + new_date[1] + '-' +new_date[0];
-       console.log(new_date)
 
         var validaEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
         var nome = $('#nome').val()
@@ -190,8 +187,6 @@ $('#btnEnviar').click(function(e){
 
         }else{
             retorno['erro'] = false;
-            retorno['Mensagem'] = 'Dados Validos';
-
         }
        if(retorno['erro']){
         $('#mensagem').html(retorno['Mensagem'])

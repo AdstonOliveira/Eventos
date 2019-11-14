@@ -162,7 +162,7 @@ class ParticipanteController extends Controller
             $participante->email = $request->email;
             $participante->telefone = $request->telefone;
 
-            $participante->data_nascimento = $newdate;
+            $participante->data_nascimento = $newDate;
             $participante->organizacao = $request->organizacao;
             $participante->update();
 

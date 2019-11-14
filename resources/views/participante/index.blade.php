@@ -38,7 +38,7 @@
                                                 <td>{{$participante->cpf}}</td>
                                                 <td>{{$participante->email}}</td>
                                                 <td>{{$participante->telefone}}</td>
-                                                <td>{{$participante->data_nascimento}}</td>
+                                                <td>{{date('d-m-Y', strtotime($participante->data_nascimento))}}</td>
                                                 <td>{{$participante->organizacao}}</td>
                     
                                                 <td>

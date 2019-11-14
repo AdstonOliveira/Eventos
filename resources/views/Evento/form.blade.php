@@ -15,13 +15,13 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label for="data"><b>Data</b></label>
-                        <input type="date" class="form-control" name="data" placeholder="DD/MM/AAAA" value="{{ isset($evento) ? $evento->data->format('Y-m-d') : '' }}" required>
+                        <input type="date" class="form-control" name="data" placeholder="DD/MM/AAAA" value="{{ isset($evento) ? date('Y-d-m', strtotime($evento->data)) : '' }}" required>
                         <span class="alert-danger" role="alert">{{ $errors->first('data') }}</span>
                     </div>
 
                     <div class="form-group col-sm-6">
                         <label for="hora"><b>Horário</b></label>
-                        <input type="time" class="form-control" name="hora" value="{{isset($evento) ? $evento->hora : '' }}" required>
+                        <input type="time" class="form-control" name="hora" value="{{ isset($evento) ? date('H:m', strtotime($evento->hora) ) : '' }}" required>
                         <span class="alert-danger" role="alert">{{ $errors->first('hora') }}</span>
                     </div>
                 </div>
